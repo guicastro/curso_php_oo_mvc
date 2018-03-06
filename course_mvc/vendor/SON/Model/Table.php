@@ -1,0 +1,35 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: guilherme
+ * Date: 23/12/2017
+ * Time: 19:43
+ */
+
+namespace SON\Model;
+
+
+abstract class Table
+{
+    protected $db;
+
+    public function __construct(\PDO $db) {
+
+        $this->db = $db;
+    }
+
+    public function fetchAll() {
+
+        $query = "SELECT * FROM {$this->table}";
+        return $this->db->query($query);
+    }
+
+    public function find($id) {
+
+        $query = "SELECT * FROM {$this->table} WHERE id=:id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":id",$id);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+}

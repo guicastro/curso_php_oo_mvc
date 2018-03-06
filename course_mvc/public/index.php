@@ -22,4 +22,9 @@ require_once("../vendor/autoload.php");
 
 $route = new \App\Route;
 
-echo $route->getUrl();
+echo "<pre>";
+//print_r($route->getUrl());
+//echo "<br>";
+//print_r($_SERVER);
+echo "</pre>";
+

@@ -2,16 +2,11 @@
 
 namespace App;
 
-class Route {
+use SON\Init\Bootstrap;
 
-	private $routes;
+class Route extends Bootstrap {
 
-	public function __construct() {
-
-
-	}
-
-	public function initRoutes() {
+	protected function initRoutes() {
 
 		$routes['home'] = array("route" => "/",
 								"controller" => "indexController",
@@ -20,10 +15,8 @@ class Route {
 		$routes['contact'] = array("route" => "/contact",
 									"controller" => "indexController",
 									"action" => "contact");
+
+		$this->setRoutes($routes);
 	}
 
-	public function getUrl() {
-
-		return parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
-	}
 }
